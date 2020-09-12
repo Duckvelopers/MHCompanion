@@ -5,9 +5,6 @@ from venv.controller import monsterController as mc
 from venv.controller import materialController as mac
 
 import logging
-import os
-
-PORT = int(os.environ.get('PORT', 5000))
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger('MH_Bot')
@@ -50,11 +47,6 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('bitem', bitem))
     dispatcher.add_handler(CommandHandler('bmonstruo', bmonstruo))
 
-    #updater.start_polling()
-
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=token)
-    updater.bot.setWebhook('https://mh-companion.herokuapp.com/' + token)
+    updater.start_polling()
 
     updater.idle()
