@@ -17,7 +17,8 @@ def start(bot, update):
 
 if __name__ == '__main__':
 
-    updater = Updater(token=token)
+    logger.info('El bot está iniciado')
+    updater = Updater(token,use_context=True)
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler('start', start))
