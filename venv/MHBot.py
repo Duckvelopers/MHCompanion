@@ -21,7 +21,6 @@ def creditos(bot, update):
         text="Desarrollado por las mentes de @Kelfindel y @alochimpasplum"
     )
 
-
 if __name__ == '__main__':
 
     logger.info('El bot está iniciado')
