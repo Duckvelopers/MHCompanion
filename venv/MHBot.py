@@ -14,6 +14,13 @@ def start(bot, update):
         text="¡Miáumonos de caza!"
     )
 
+def creditos(bot, update):
+    logger.info('Recibido comando creditos')
+    bot.send_message(
+        chat_id=update.message.chat_id,
+        text="Desarrollado por las mentes de @Kelfindel y @alochimpasplum"
+    )
+
 
 if __name__ == '__main__':
 
@@ -21,6 +28,7 @@ if __name__ == '__main__':
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler('start', start))
+    dispatcher.add_handler(CommandHandler('creditos', creditos))
 
     updater.start_polling()
     updater.idle()
