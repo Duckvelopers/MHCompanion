@@ -1,5 +1,5 @@
 from telegram.ext import Updater, CommandHandler
-from config.auth import token
+from venv.config.auth import token
 
 from venv.controller import monsterController as mc
 from venv.controller import materialController as mac
