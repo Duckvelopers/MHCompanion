@@ -25,7 +25,7 @@ def start(update, context):
 def debug(update, context):
     logger.debug('He recibido un comando debug')
     context.bot.send_message(update.message.chat_id,
-        text="Mensaje de Debug htok"
+        text="Mensaje de Debug"
     )
 
 
