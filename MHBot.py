@@ -1,6 +1,5 @@
 from telegram.ext import Updater, CommandHandler
 from config.auth import token
-import sys
 
 from controller import monsterController as mc
 from controller import materialController as mac
