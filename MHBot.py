@@ -1,5 +1,6 @@
 from telegram.ext import Updater, CommandHandler
 from config.auth import token
+import sys
 
 from controller import monsterController as mc
 from controller import materialController as mac
@@ -10,39 +11,46 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger('MH_Bot')
 
 
-def start(bot, update):
-    logger.info('He recibido un comando start')
-    bot.send_message(
+def start(update, context):
+    logger.debug('He recibido un comando start')
+    context.bot.send_message(
         chat_id=update.message.chat_id,
         text="¡Miáumonos de caza!"
     )
 
 
-def creditos(bot, update):
+def debug(update, context):
+    logger.debug('He recibido un comando debug')
+    context.bot.send_message(update.message.chat_id,
+        text="Mensaje de Debug"
+    )
+
+
+def creditos(update, context):
     logger.info('Recibido comando creditos')
-    bot.send_message(
+    context.bot.send_message(
         chat_id=update.message.chat_id,
         text="Desarrollado por las mentes de @Kelfindel y @alochimpasplum"
     )
 
 
-def bmonstruo(bot, update):
+def bmonstruo(update, context):
     logger.debug('Busqueda de monstruo recibido')
-    mc.busquedaDebug(bot, update)
+    mc.busquedaDebug(update, context)
 
 
-def bitem(bot, update):
+def bitem(update, context):
     logger.debug('Busqueda de item recibido')
-    mac.busquedaDebug(bot, update)
+    mac.busquedaDebug(update, context)
 
 
 if __name__ == '__main__':
     logger.info('El bot está iniciado')
-    # updater = Updater(token,use_context=True)
-    updater = Updater(token=token)
+    updater = Updater(token, use_context=True)
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler('start', start))
+    dispatcher.add_handler(CommandHandler('debug', debug))
     dispatcher.add_handler(CommandHandler('creditos', creditos))
     dispatcher.add_handler(CommandHandler('bitem', bitem))
     dispatcher.add_handler(CommandHandler('bmonstruo', bmonstruo))
