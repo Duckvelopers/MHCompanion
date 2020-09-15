@@ -1,5 +1,9 @@
 from telegram.ext import Updater, CommandHandler
-from config.auth import token
+#para local usar este import
+#from config.auth import token
+#para heroku
+import os
+token = os.environ['HerokuToken']
 
 from controller import monsterController as mc
 from controller import materialController as mac
@@ -21,7 +25,7 @@ def start(update, context):
 def debug(update, context):
     logger.debug('He recibido un comando debug')
     context.bot.send_message(update.message.chat_id,
-        text="Mensaje de Debug"
+        text="Mensaje de Debug htok"
     )
 
 
