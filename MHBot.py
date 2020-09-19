@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler
 from controller import monsterController as mc
 from controller import materialController as mac
-clasfrom controller import apiRest as ar
+from controller import apiRest as ar
 from DDBB import dbAdmin as dba
 
 import logging
@@ -75,6 +75,9 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('bmonstruo', bmonstruo))
     dispatcher.add_handler(CommandHandler('dbAdmin', dbAdmin))
     dispatcher.add_handler(CommandHandler('dbCarga', dbCarga))
+
+    lista = (("start", "Bienvenida"), ("debug", "Comando de prueba"))
+    Bot.set_my_commands(lista)
 
     updater.start_polling()
 
