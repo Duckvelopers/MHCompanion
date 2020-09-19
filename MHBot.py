@@ -1,6 +1,7 @@
 from telegram.ext import Updater, CommandHandler
 from controller import monsterController as mc
 from controller import materialController as mac
+clasfrom controller import apiRest as ar
 from DDBB import dbAdmin as dba
 
 import logging
@@ -16,6 +17,7 @@ logger = logging.getLogger('MH_Bot')
 
 def start(update, context):
     logger.debug('Recibido comando start')
+    ar.handleCommand("start")
     context.bot.send_message(
         update.message.chat_id,
         text="¡Miáumonos de caza!"
@@ -24,6 +26,7 @@ def start(update, context):
 
 def debug(update, context):
     logger.debug('Recibido comando debug')
+    ar.handleCommand("debug")
     context.bot.send_message(update.message.chat_id,
         text="Mensaje de Debug"
     )
@@ -31,6 +34,7 @@ def debug(update, context):
 
 def creditos(update, context):
     logger.info('Recibido comando creditos')
+    ar.handleCommand("creditos")
     context.bot.send_message(
         update.message.chat_id,
         text="Desarrollado por las mentes de @Kelfindel y @alochimpasplum"
@@ -39,19 +43,23 @@ def creditos(update, context):
 
 def bmonstruo(update, context):
     logger.debug('Busqueda de monstruo recibido')
+    ar.handleCommand("bmonstruo")
     mc.busquedaDebug(update, context)
 
 
 def bitem(update, context):
     logger.debug('Busqueda de item recibido')
+    ar.handleCommand("bitem")
     mac.busquedaDebug(update, context)
 
 
 def dbAdmin(update, context):
+    ar.handleCommand("dbAdmin")
     dba.adminDDBB(update, context)
 
 
 def dbCarga(update, context):
+    ar.handleCommand("dbCarga")
     dba.cargarSQL(update,context)
 
 
