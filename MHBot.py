@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler
 from controller import monsterController as mc
 from controller import materialController as mac
-clasfrom controller import apiRest as ar
+from controller import apiRest as ar
 from DDBB import dbAdmin as dba
 
 import logging
