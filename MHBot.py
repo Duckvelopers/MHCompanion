@@ -6,10 +6,10 @@ from DDBB import dbAdmin as dba
 
 import logging
 #para local usar este import
-#from config.auth import token
+from config.auth import token
 #para heroku
-import os
-token = os.environ['HerokuToken']
+#import os
+#token = os.environ['HerokuToken']
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger('MH_Bot')
@@ -27,8 +27,9 @@ def start(update, context):
 def debug(update, context):
     logger.debug('Recibido comando debug')
     ar.handleCommand("debug")
-    context.bot.send_message(update.message.chat_id,
-        text="Mensaje de Debug"
+    context.bot.send_message(
+        update.message.chat_id,
+        text="Mensaje de Debug ⭐🔥💧❄⚡️️🔱"
     )
 
 
@@ -44,7 +45,7 @@ def creditos(update, context):
 def bmonstruo(update, context):
     logger.debug('Busqueda de monstruo recibido')
     ar.handleCommand("bmonstruo")
-    mc.busquedaDebug(update, context)
+    mc.buscarMonstruo(update, context)
 
 
 def bitem(update, context):
@@ -60,7 +61,7 @@ def dbAdmin(update, context):
 
 def dbCarga(update, context):
     ar.handleCommand("dbCarga")
-    dba.cargarSQL(update,context)
+    dba.cargarSQL(update, context)
 
 
 if __name__ == '__main__':
@@ -72,9 +73,18 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('debug', debug))
     dispatcher.add_handler(CommandHandler('creditos', creditos))
     dispatcher.add_handler(CommandHandler('bitem', bitem))
-    dispatcher.add_handler(CommandHandler('bmonstruo', bmonstruo))
+    dispatcher.add_handler(CommandHandler('bmons', bmonstruo))
     dispatcher.add_handler(CommandHandler('dbAdmin', dbAdmin))
     dispatcher.add_handler(CommandHandler('dbCarga', dbCarga))
+
+    lista = (
+        ("start", "Bienvenida"),
+        ("debug", "Comando de prueba"),
+        ("creditos", "Info de mis creadores"),
+        ("bitem", "Para buscar item, Usar \\bitem objetoABuscar"),
+        ("bmons", "Para buscar item, Usar \\bmons Nombre Sub")
+    )
+    dispatcher.bot.set_my_commands(lista)
 
     updater.start_polling()
 
