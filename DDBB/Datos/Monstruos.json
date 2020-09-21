@@ -4,11 +4,11 @@
 		"json": {
 			"nameEsp": "Gran Jagras",
 			"nameEng": "Great Jagras",
-			"fireWeak": "3",
-			"waterWeak": "0",
-			"electricWeak": "2",
-			"iceWeak": "2",
-			"dragonWeak": "1",
+			"fireWeak": 3,
+			"waterWeak": 0,
+			"electricWeak": 2,
+			"iceWeak": 2,
+			"dragonWeak": 1,
 			"breakEsp": "Cabeza, Estómago, Patas delanteras",
 			"breakEng": "Head, Belly, Forelegs"
 		}
@@ -18,11 +18,11 @@
 		"json": {
 			"nameEsp": "Kulu-Ya-Ku",
 			"nameEng": "Kulu-Ya-Ku",
-			"fireWeak": "2",
-			"waterWeak": "3",
-			"electricWeak": "2",
-			"iceWeak": "2",
-			"dragonWeak": "2",
+			"fireWeak": 2,
+			"waterWeak": 3,
+			"electricWeak": 2,
+			"iceWeak": 2,
+			"dragonWeak": 2,
 			"breakEsp": "Cabeza, Patas delanteras",
 			"breakEng": "Head, Forelegs"
 		}
@@ -32,11 +32,11 @@
 		"json": {
 			"nameEsp": "Pukei Pukei",
 			"nameEng": "Pukei Pukei",
-			"fireWeak": "2",
-			"waterWeak": "0",
-			"electricWeak": "3",
-			"iceWeak": "2",
-			"dragonWeak": "1",
+			"fireWeak": 2,
+			"waterWeak": 0,
+			"electricWeak": 3,
+			"iceWeak": 2,
+			"dragonWeak": 1,
 			"breakEsp": "Cabeza, Alas, Torso, Cola (cortable)",
 			"breakEng": "Head, Wings, Back, Tail (cuttable)"
 		}

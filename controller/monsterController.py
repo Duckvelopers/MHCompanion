@@ -1,6 +1,6 @@
 #Clase empleada para búsquedas relacionadas con monstruos
-from telegram.ext import Updater, CallbackContext
 from DDBB import refMonster as rf
+from DDBB import dbController as dbC
 
 
 Iconos = '🔥💧⚡❄️️🔱⭐'
@@ -25,8 +25,25 @@ def buscarNombreMonstruo(args):
         busqueda = args.pop(0).lower()
         opciones = [x for x in opciones if x.lower().__contains__(busqueda)]
     if len(opciones) == 1:
-        return rf.nombresMonstruo[opciones[0]]
+        return detallesMonstruo(rf.nombresMonstruo[opciones[0]])
     elif len(opciones) == 0:
         return "Monstruo no encontrado."
     else:
-        return rf.nombresMonstruo[min(opciones, key=len)]
+        return detallesMonstruo(rf.nombresMonstruo[min(opciones, key=len)])
+
+
+def detallesMonstruo(codigo):
+    datos = dbC.leerMonstruoDDBB(codigo)
+    if datos is str:
+        return datos
+    else:
+        texto = "Nombre del Monstruo: {}\nDeb.fuego: {}\nDeb.Agua: {}\nDeb.Electro: {}\nDeb.Hielo: {}\nDeb.Dragon: {}\nRompibles: {}".format(
+            datos["nameEsp"],
+            (datos["fireWeak"]*'⭐'),
+            (datos["waterWeak"]*'⭐'),
+            (datos["electricWeak"]*'⭐'),
+            (datos["iceWeak"]*'⭐'),
+            (datos["dragonWeak"]*'⭐'),
+            datos["breakEsp"])
+        print(texto)
+        return texto

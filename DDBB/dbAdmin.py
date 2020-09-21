@@ -29,6 +29,7 @@ def updateMonstruos():
             cursor.close()
         except sqlite3.Error as error:
             logger.error("Fallo al insertar en la tabla", error)
+            return "Error"
         finally:
             if conn:
                 conn.close()
