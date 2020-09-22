@@ -6,10 +6,10 @@ from DDBB import dbAdmin as dba
 
 import logging
 #para local usar este import
-from config.auth import token
+#from config.auth import token
 #para heroku
-#import os
-#token = os.environ['HerokuToken']
+import os
+token = os.environ['HerokuToken']
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger('MH_Bot')
