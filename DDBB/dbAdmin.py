@@ -9,6 +9,7 @@ db_Fotos = r'DDBB\Datos\\'
 logger = logging.getLogger('MH_Bot')
 
 
+#IMPORTANTE ACTUALIZAR SI CAMBIA FORMATO JSON O ESTRUCTURA BBDD
 def updateMonstruos():
     logger.info('Actualizando Monstruos')
     cont = 0
@@ -19,7 +20,7 @@ def updateMonstruos():
             cursor = conn.cursor()
             for p in data:
                 codigo = p['code']
-                archjson = json.dumps(p['json'])
+                archjson = json.dumps(p['weak'])
                 sqlite_insert = "REPLACE INTO MONSTRUOS(COD_MON, DATOS) VALUES (?, ?)"
                 datos_tupla = (codigo, archjson)
                 cursor.execute(sqlite_insert, datos_tupla)

@@ -16,7 +16,7 @@ def leerMonstruoDDBB(codigo):
         for row in record:
             datosJson = row[0]
             datos = json.loads(datosJson)
-            logger.info("Leidos datos de: "+datos["nameEsp"])
+            logger.info("Leidos datos de: "+datos["name"])
         cursor.close()
 
     except sqlite3.Error as error:

@@ -29,7 +29,7 @@ def debug(update, context):
     ar.handleCommand("debug")
     context.bot.send_message(
         update.message.chat_id,
-        text="Mensaje de Debug ⭐🔥💧❄⚡️️🔱♆❌"
+        text="Mensaje de Debug ⭐🔥💧❄⚡️️🔱❌"
     )
 
 
@@ -45,7 +45,11 @@ def creditos(update, context):
 def bmonstruo(update, context):
     logger.debug('Busqueda de monstruo recibido')
     ar.handleCommand("bmonstruo")
-    mc.buscarMonstruo(update, context)
+    texto = mc.buscarMonstruo(context.args)
+    context.bot.send_message(
+        update.message.chat_id,
+        text=texto
+    )
 
 
 def bitem(update, context):
