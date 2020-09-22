@@ -5,7 +5,7 @@ import logging
 
 db_nombre = r'DDBB\MHCompanion.db'
 db_Datos = r'DDBB\Datos'
-db_Fotos = r'DDBB\Datos\\'
+db_Fotos = r'DDBB\Fotos'
 logger = logging.getLogger('MH_Bot')
 
 
@@ -39,17 +39,15 @@ def updateMonstruos():
 
 
 def cargarSQL():
+    import DDBB.Datos.Tablas as Tab
     cont = 0
-    for file in os.listdir(db_Datos):
-        with sqlite3.connect(db_nombre) as conn:
-            if file.endswith(".sql"):
-                with open(os.path.join(db_Datos, file), 'rt') as f:
-                    schema = f.read()
-                result = conn.execute(schema)
-                for x in result.fetchall():
-                    print(x)
-                logger.info("Cargado "+file+" con éxito")
-                cont += 1
+    with sqlite3.connect(db_nombre) as conn:
+        for tabla in Tab.tablas.items():
+            result = conn.execute(tabla[1])
+            for x in result.fetchall():
+                print(x)
+            logger.info("Cargado "+tabla[0]+" con éxito")
+            cont += 1
     return str(cont)
 
 
