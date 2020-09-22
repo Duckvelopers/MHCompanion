@@ -29,7 +29,7 @@ def debug(update, context):
     ar.handleCommand("debug")
     context.bot.send_message(
         update.message.chat_id,
-        text="Mensaje de Debug ⭐🔥💧❄⚡️️🔱"
+        text="Mensaje de Debug ⭐🔥💧❄⚡️️🔱❌"
     )
 
 
@@ -45,7 +45,11 @@ def creditos(update, context):
 def bmonstruo(update, context):
     logger.debug('Busqueda de monstruo recibido')
     ar.handleCommand("bmonstruo")
-    mc.buscarMonstruo(update, context)
+    texto = mc.buscarMonstruo(context.args)
+    context.bot.send_message(
+        update.message.chat_id,
+        text=texto
+    )
 
 
 def bitem(update, context):
@@ -54,14 +58,31 @@ def bitem(update, context):
     mac.busquedaDebug(update, context)
 
 
-def dbAdmin(update, context):
+def dbCrear(update, context):
     ar.handleCommand("dbAdmin")
-    dba.adminDDBB(update, context)
+    texto = dba.createDDBB()
+    context.bot.send_message(
+        update.message.chat_id,
+        text=texto
+    )
 
 
-def dbCarga(update, context):
+def dbCargarSql(update, context):
     ar.handleCommand("dbCarga")
-    dba.cargarSQL(update, context)
+    texto = dba.cargarSQL()
+    context.bot.send_message(
+        update.message.chat_id,
+        text="Ficheros cargados: "+texto
+    )
+
+
+def dbUpdateMons(update, context):
+    ar.handleCommand("dbUpdateMons")
+    texto = dba.updateMonstruos()
+    context.bot.send_message(
+        update.message.chat_id,
+        text="Cargados "+texto+" monstruos."
+    )
 
 
 if __name__ == '__main__':
@@ -74,8 +95,9 @@ if __name__ == '__main__':
     dispatcher.add_handler(CommandHandler('creditos', creditos))
     dispatcher.add_handler(CommandHandler('bitem', bitem))
     dispatcher.add_handler(CommandHandler('bmons', bmonstruo))
-    dispatcher.add_handler(CommandHandler('dbAdmin', dbAdmin))
-    dispatcher.add_handler(CommandHandler('dbCarga', dbCarga))
+    dispatcher.add_handler(CommandHandler('dbCrear', dbCrear))
+    dispatcher.add_handler(CommandHandler('dbCargarSql', dbCargarSql))
+    dispatcher.add_handler(CommandHandler('dbUpdateMons', dbUpdateMons))
 
     lista = (
         ("start", "Bienvenida"),

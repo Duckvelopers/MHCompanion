@@ -1,22 +1,18 @@
 #Clase empleada para búsquedas relacionadas con monstruos
-from telegram.ext import Updater, CallbackContext
 from DDBB import refMonster as rf
+from DDBB import dbController as dbC
+
+import logging
+
+logger = logging.getLogger('MH_Bot')
+Iconos = '⭐🔥💧❄⚡️️🔱❌'
 
 
-Iconos = '🔥💧⚡❄️️🔱⭐'
-
-
-def buscarMonstruo(update, context):
-    #logger.info('Debugeando la busqueda de monstruo')
-    lista = context.args
+def buscarMonstruo(lista):
     if len(lista) < 1:
-        mens = "Debes introducir al menos un argumento"
+        return "Debes introducir al menos un argumento"
     else:
-        mens = buscarNombreMonstruo(lista)
-    context.bot.send_message(
-        update.message.chat_id,
-        text=mens
-    )
+        return detallesMonstruo(buscarNombreMonstruo(lista))
 
 
 def buscarNombreMonstruo(args):
@@ -27,6 +23,31 @@ def buscarNombreMonstruo(args):
     if len(opciones) == 1:
         return rf.nombresMonstruo[opciones[0]]
     elif len(opciones) == 0:
-        return "Monstruo no encontrado."
+        return None
     else:
         return rf.nombresMonstruo[min(opciones, key=len)]
+
+
+#UPDATEAR CON ESTRUCTURA BBDD
+def detallesMonstruo(codigo):
+    logger.info('Codigo recibido: '+codigo)
+    if codigo is None:
+        return "Monstruo no encontrado."
+    else:
+        datos = dbC.leerMonstruoDDBB(codigo)
+        texto = "Nombre del Monstruo: {}\n🔥: {}\n💧: {}\n⚡: {}\n❄️️: {}\n🔱: {}".format(
+            datos["name"],
+            estrellas(datos["fire"]),
+            estrellas(datos["water"]),
+            estrellas(datos["thunder"]),
+            estrellas(datos["ice"]),
+            estrellas(datos["dragon"]))
+        print(texto)
+        return texto
+
+
+def estrellas(int):
+    if int == 0:
+        return "❌"
+    else:
+        return int*'⭐'
