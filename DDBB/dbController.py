@@ -10,7 +10,7 @@ def leerMonstruoDDBB(codigo):
     try:
         conn = sqlite3.connect(db_nombre)
         cursor = conn.cursor()
-        selQuery = """SELECT DATOS FROM MONSTRUOS WHERE COD_MON = ?"""
+        selQuery = """SELECT DATOS FROM MON_WEAK WHERE COD_MON = ?"""
         cursor.execute(selQuery, (codigo,))
         record = cursor.fetchall()
         for row in record:

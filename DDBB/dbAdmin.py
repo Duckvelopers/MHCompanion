@@ -21,7 +21,7 @@ def updateMonstruos():
             for p in data:
                 codigo = p['code']
                 archjson = json.dumps(p['weak'])
-                sqlite_insert = "REPLACE INTO MONSTRUOS(COD_MON, DATOS) VALUES (?, ?)"
+                sqlite_insert = "REPLACE INTO MON_WEAK(COD_MON, DATOS) VALUES (?, ?)"
                 datos_tupla = (codigo, archjson)
                 cursor.execute(sqlite_insert, datos_tupla)
                 conn.commit()
