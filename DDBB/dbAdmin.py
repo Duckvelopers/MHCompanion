@@ -40,8 +40,8 @@ def updateMonstruos():
 
 def cargarSQL():
     cont = 0
-    for file in os.listdir(db_Datos):
-        with sqlite3.connect(db_nombre) as conn:
+    with sqlite3.connect(db_nombre) as conn:
+        for file in os.listdir(db_Datos):
             if file.endswith(".sql"):
                 with open(os.path.join(db_Datos, file), 'rt') as f:
                     schema = f.read()
