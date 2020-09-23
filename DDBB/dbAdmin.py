@@ -3,10 +3,11 @@ import sqlite3
 import json
 import logging
 
-db_nombre = r'DDBB\MHCompanion.db'
-db_Datos = r'DDBB\Datos'
-json_Mons = 'Monstruos.json'
-db_Fotos = r'DDBB\Fotos'
+db_root = 'DDBB'
+db_nombre = os.path.join(db_root, 'MHCompanion.db')
+db_Datos = os.path.join(db_root, 'Datos')
+json_Mons = os.path.join(db_Datos, 'Monstruos.json')
+db_Fotos = os.path.join(db_root, 'Fotos')
 logger = logging.getLogger('MH_Bot')
 
 
@@ -14,7 +15,7 @@ logger = logging.getLogger('MH_Bot')
 def updateMonstruos():
     logger.info('Actualizando Monstruos')
     cont = 0
-    with open(os.path.join(db_Datos, json_Mons)) as json_file:
+    with open(json_Mons) as json_file:
         data = json.load(json_file)
         try:
             conn = sqlite3.connect(db_nombre)
