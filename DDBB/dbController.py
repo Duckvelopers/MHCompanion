@@ -1,9 +1,7 @@
-import sqlite3
-import json
-import logging
+import sqlite3, os, json, logging
 
 
-db_nombre = r'DDBB\MHCompanion.db'
+db_nombre = os.path.join('DDBB', 'MHCompanion.db')
 logger = logging.getLogger('MH_Bot')
 
 def leerMonstruoDDBB(codigo):
