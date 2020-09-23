@@ -87,6 +87,9 @@ def dbUpdateMons(update, context):
 
 if __name__ == '__main__':
     logger.info('El bot está iniciado')
+    logger.info(dba.createDDBB())
+    logger.info(dba.cargarSQL())
+    logger.info(dba.updateMonstruos())
     updater = Updater(token, use_context=True)
     dispatcher = updater.dispatcher
 
@@ -101,9 +104,9 @@ if __name__ == '__main__':
 
     lista = (
         ("start", "Bienvenida"),
-        ("debug", "Comando de prueba"),
+        # ("debug", "Comando de prueba"),
         ("creditos", "Info de mis creadores"),
-        ("bitem", "Para buscar item, Usar \\bitem objetoABuscar"),
+        # ("bitem", "Para buscar item, Usar \\bitem objetoABuscar"),
         ("bmons", "Para buscar item, Usar \\bmons Nombre Sub")
     )
     dispatcher.bot.set_my_commands(lista)
